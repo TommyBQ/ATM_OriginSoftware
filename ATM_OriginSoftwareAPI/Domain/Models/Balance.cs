@@ -12,5 +12,6 @@ namespace Domain.Models
     [Table("Balance")]
     public class Balance : Operacion
     {
+
     }
 }

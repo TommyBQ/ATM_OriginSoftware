@@ -2,8 +2,6 @@
 using Application.Interfaces;
 using Application.TarjetaCQ.Commands;
 using Application.TarjetaCQ.Queries;
-using Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +21,6 @@ namespace Web.Controllers
             tarjetaQueries = new TarjetaQueries(repoWrapper);
             tarjetaCommands = new TarjetaCommands(repoWrapper);
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

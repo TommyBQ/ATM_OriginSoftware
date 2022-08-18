@@ -10,6 +10,12 @@ namespace Domain.Models
     [Table("Retiro")]
     public class Retiro : Operacion
     {
-        public int montoRetirado { get; set; }
+        private int montoRetirado { get; set; }
+
+        public int MontoRetirado
+        {
+            get { return montoRetirado; }
+            set { montoRetirado = value; }
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Application.TarjetaCQ.Commands
 
         public bool VerificarPIN(int pin)
         {
-            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.nroTarjeta == SessionManager.GetInstance.getNroTarjeta() && x.PIN == pin).FirstOrDefault();
+            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.NroTarjeta == SessionManager.GetInstance.getNroTarjeta() && x.PIN == pin).FirstOrDefault();
             if (tarjeta == null)
             {
                 SessionManager.GetInstance.intentosDeIngreso += 1;
@@ -28,15 +28,15 @@ namespace Application.TarjetaCQ.Commands
 
         public void BloquearTarjeta()
         {
-            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.nroTarjeta == SessionManager.GetInstance.getNroTarjeta()).FirstOrDefault();
-            tarjeta.estaBloqueada = true;
+            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.NroTarjeta == SessionManager.GetInstance.getNroTarjeta()).FirstOrDefault();
+            tarjeta.EstaBloqueada = true;
             _repoWrapper.Tarjetas.Update(tarjeta);
             _repoWrapper.Save();
         }
 
         public void IniciarSesion()
         {
-            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.nroTarjeta == SessionManager.GetInstance.getNroTarjeta()).FirstOrDefault();
+            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.NroTarjeta == SessionManager.GetInstance.getNroTarjeta()).FirstOrDefault();
             SessionManager.GetInstance.Login(tarjeta);
         }
 

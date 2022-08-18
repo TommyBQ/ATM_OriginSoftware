@@ -12,7 +12,7 @@ namespace Application.TarjetaCQ.Queries
         }
         public bool ExisteTarjeta(string num)
         {
-            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.nroTarjeta == num).FirstOrDefault();
+            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.NroTarjeta == num).FirstOrDefault();
             if (tarjeta == null)
             {
                 return false;
@@ -22,8 +22,8 @@ namespace Application.TarjetaCQ.Queries
 
         public bool EstaBloqueada(string num)
         {
-            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.nroTarjeta == num).FirstOrDefault();
-            if (tarjeta.estaBloqueada)
+            var tarjeta = _repoWrapper.Tarjetas.GetByCondition(x => x.NroTarjeta == num).FirstOrDefault();
+            if (tarjeta.EstaBloqueada)
             {
                 return true;
             }

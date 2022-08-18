@@ -56,7 +56,7 @@ namespace Application
             if (!_session.estaLogueado)
             {
                 _session.tarjetaLogueada = new Tarjeta();
-                tarjetaLogueada.nroTarjeta = numTarjeta;
+                tarjetaLogueada.NroTarjeta = numTarjeta;
             }
 
         }
@@ -64,7 +64,7 @@ namespace Application
         {
             if (_session.tarjetaLogueada != null)
             {
-                return _session.tarjetaLogueada.nroTarjeta;
+                return _session.tarjetaLogueada.NroTarjeta;
             }
             else
             {

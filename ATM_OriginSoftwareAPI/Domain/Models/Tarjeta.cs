@@ -12,11 +12,42 @@ namespace Domain.Models
     public class Tarjeta
     {
         [Key]
-        public int idTarjeta { get; set; }
-        public string nroTarjeta { get; set; }
-        public int PIN { get; set; }
-        public int balance { get; set; }
-        public DateTime fechaVencimiento { get; set; }
-        public bool estaBloqueada { get; set; }
+        private int idTarjeta { get; set; }
+        private string nroTarjeta { get; set; }
+        private int _PIN { get; set; }
+        private int balance { get; set; }
+        private DateTime fechaVencimiento { get; set; }
+        private bool estaBloqueada { get; set; }
+
+        public int IdTarjeta
+        {
+            get { return idTarjeta; }
+            set { idTarjeta = value; }
+        }
+        public string NroTarjeta
+        {
+            get { return nroTarjeta; }
+            set { nroTarjeta = value; }
+        }
+        public int PIN
+        {
+            get { return _PIN; }
+            set { _PIN = value; }
+        }
+        public int Balance
+        {
+            get { return balance; }
+            set { balance = value; }
+        }
+        public DateTime FechaVencimiento
+        {
+            get { return fechaVencimiento; }
+            set { fechaVencimiento = value; }
+        }
+        public bool EstaBloqueada
+        {
+            get { return estaBloqueada; }
+            set { estaBloqueada = value; }
+        }
     }
 }
