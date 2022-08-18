@@ -1,4 +1,5 @@
-﻿using Application.BalancesCQ.Commands;
+﻿using Application;
+using Application.BalancesCQ.Commands;
 using Application.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -26,10 +27,15 @@ namespace Web.Controllers
             return Ok(balances);
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Balance balance)
+        public async Task<IActionResult> Create()
         {
-            balanceCommands.CrearRegistroBalance(balance);
+            balanceCommands.CrearRegistroBalance();
             return Ok("Se creó el registro de balance");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetTarjetaLogueada()
+        {
+            return Ok(SessionManager.GetInstance.obtenerTarjetaLogueada());
         }
     }
 }

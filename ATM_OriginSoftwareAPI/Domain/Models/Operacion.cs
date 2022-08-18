@@ -10,9 +10,9 @@ namespace Domain.Models
     public class Operacion
     {
         [Key]
-        private int codigoOperacion { get; set; }
-        private int idTarjeta { get; set; }
-        private DateTime fechaHoraOperacion { get ; set; }
+        private int codigoOperacion;
+        private int idTarjeta;
+        private DateTime fechaHoraOperacion;
 
         public int CodigoOperacion
         {
@@ -27,7 +27,7 @@ namespace Domain.Models
         public DateTime FechaHoraOperacion
         {
             get { return fechaHoraOperacion; }
-            set { fechaHoraOperacion = DateTime.Now; }
+            set { fechaHoraOperacion = value; }
         }
     }
 }

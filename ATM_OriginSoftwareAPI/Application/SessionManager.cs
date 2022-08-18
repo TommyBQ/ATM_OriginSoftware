@@ -51,6 +51,17 @@ namespace Application
             }
         }
 
+        public Tarjeta obtenerTarjetaLogueada()
+        {
+            if (_session.tarjetaLogueada != null && _session.estaLogueado)
+            {
+                return _session.tarjetaLogueada;
+            } else
+            {
+                throw new Exception("No hay tarjeta logueada.");
+            }
+        }
+
         public void setNroTarjeta(string numTarjeta)
         {
             if (!_session.estaLogueado)
@@ -65,6 +76,18 @@ namespace Application
             if (_session.tarjetaLogueada != null)
             {
                 return _session.tarjetaLogueada.NroTarjeta;
+            }
+            else
+            {
+                throw new Exception("No se ingresó num tarjeta.");
+            }
+        }
+
+        public int getIdTarjeta()
+        {
+            if (_session.tarjetaLogueada != null)
+            {
+                return _session.tarjetaLogueada.IdTarjeta;
             }
             else
             {

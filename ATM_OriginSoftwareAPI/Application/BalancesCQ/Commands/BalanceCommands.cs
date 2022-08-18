@@ -17,8 +17,12 @@ namespace Application.BalancesCQ.Commands
             _repoWrapper = repoWrapper;
         }
 
-        public void CrearRegistroBalance(Balance balance)
+        public void CrearRegistroBalance()
         {
+            Balance balance = new Balance();
+            balance.IdTarjeta = SessionManager.GetInstance.getIdTarjeta();
+            balance.FechaHoraOperacion = DateTime.Now;
+
             _repoWrapper.Balances.Insert(balance);
             _repoWrapper.Save();
         }
