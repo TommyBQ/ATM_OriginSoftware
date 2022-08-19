@@ -29,7 +29,9 @@ export class BalanceComponent implements OnInit {
   }
 
   salir() {
-    this.apiService.cerrarSesion();
+    this.apiService.cerrarSesion().subscribe((data) => {
+      console.log(data.mensajeError);
+    });
     this.router.navigate(['/']);
   }
 

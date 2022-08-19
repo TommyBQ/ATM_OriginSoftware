@@ -43,12 +43,8 @@ namespace Application
             {
                 _session.tarjetaLogueada = null;
                 _session.estaLogueado = false;
-                _session.intentosDeIngreso = 0;
             }
-            else
-            {
-                throw new Exception("Sesión no iniciada.");
-            }
+            _session.intentosDeIngreso = 0;
         }
 
         public Tarjeta obtenerTarjetaLogueada()
@@ -56,7 +52,8 @@ namespace Application
             if (_session.tarjetaLogueada != null && _session.estaLogueado)
             {
                 return _session.tarjetaLogueada;
-            } else
+            }
+            else
             {
                 throw new Exception("No hay tarjeta logueada.");
             }

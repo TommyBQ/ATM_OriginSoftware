@@ -13,7 +13,7 @@
                 class="form-control"
                 id="numTarjeta"
                 maxlength="16"
-                placeholder="Ingrese el N° de Tarjeta"
+                placeholder="Ingrese un número de tarjeta de 16 dígitos."
                 [(ngModel)]="nroTarjeta"
                 name="nroTarjeta"
                 (keydown)="$event.preventDefault()"
@@ -29,6 +29,7 @@
                 placeholder="Ingrese el PIN"
                 [(ngModel)]="pin"
                 name="pin"
+                (keydown)="$event.preventDefault()"
               />
             </div>
             <div class="tecladoNumerico">
@@ -42,7 +43,6 @@
               id="btnLimpiar"
               class="btn btn-primary mt-3"
               (click)="limpiarInputs()"
-              (click)="tecladoNumerico.limpiarNumero()"
             >
               Limpiar
             </button>
@@ -51,7 +51,6 @@
               id="btnAceptar"
               class="btn btn-primary mt-3"
               (click)="verificarNumero()"
-              (click)="tecladoNumerico.limpiarNumero()"
             >
               Aceptar
             </button>
@@ -60,7 +59,6 @@
               id="btnSalir"
               class="btn btn-primary mt-3"
               (click)="salir()"
-              (click)="tecladoNumerico.limpiarNumero()"
               *ngIf="tarjetaValida"
             >
               Salir

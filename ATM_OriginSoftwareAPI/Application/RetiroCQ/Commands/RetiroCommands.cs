@@ -36,6 +36,7 @@ namespace Application.RetiroCQ.Commands
             tarjetaAModificar.Balance -= montoRetirado;
 
             _repoWrapper.Tarjetas.Update(tarjetaAModificar);
+            _repoWrapper.Save();
         }
     }
 }
