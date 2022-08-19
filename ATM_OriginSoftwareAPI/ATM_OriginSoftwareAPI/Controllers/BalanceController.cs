@@ -30,12 +30,12 @@ namespace Web.Controllers
         public async Task<IActionResult> Create()
         {
             balanceCommands.CrearRegistroBalance();
-            return Ok("Se creó el registro de balance");
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetTarjetaLogueada()
-        {
-            return Ok(SessionManager.GetInstance.obtenerTarjetaLogueada());
+            return Ok(new
+            {
+                IsSuccess = true,
+                mensajeError = "Se creó el balance.",
+                status = StatusCodes.Status200OK
+            });
         }
     }
 }

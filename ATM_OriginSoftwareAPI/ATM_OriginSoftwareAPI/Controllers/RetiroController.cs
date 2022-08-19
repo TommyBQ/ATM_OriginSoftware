@@ -34,15 +34,30 @@ namespace Web.Controllers
         {
             if (!retiroQueries.ValidarMontoARetirar(montoARetirar))
             {
-                return BadRequest("No se puede retirar más de lo que se tiene en la cuenta.");
+                return BadRequest(new
+                {
+                    IsSuccess = false,
+                    mensajeError = "No se puede retirar más de lo que se tiene en la cuenta.",
+                    status = StatusCodes.Status400BadRequest
+                });
+            }
+            if (montoARetirar == 0)
+            {
+                return BadRequest(new
+                {
+                    IsSuccess = false,
+                    mensajeError = "No se puede retirar un monto nulo.",
+                    status = StatusCodes.Status400BadRequest
+                });
             }
             retiroCommands.CrearRegistroRetiro(montoARetirar);
-            return Ok("Se creó el registro del retiro.");
+            return Ok(new
+            {
+                IsSuccess = true,
+                mensajeError = "Se creó el registro del Retiro.",
+                status = StatusCodes.Status200OK
+            });
         }
-        [HttpGet]
-        public async Task<IActionResult> GetTarjetaLogueada()
-        {
-            return Ok(SessionManager.GetInstance.obtenerTarjetaLogueada());
-        }
+
     }
 }

@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h1>Iniciar Sesión</h1>
+          <hr>
+          <form>
+            <div class="form-group">
+              <label for="numTarjeta">N° Tarjeta</label>
+              <input
+                type="text"
+                class="form-control"
+                id="numTarjeta"
+                maxlength="16"
+                placeholder="Ingrese el N° de Tarjeta"
+                [(ngModel)]="nroTarjeta"
+                name="nroTarjeta"
+                (keydown)="$event.preventDefault()"
+                [disabled]="tarjetaValida"
+              />
+            </div>
+            <div class="form-group" *ngIf="tarjetaValida">
+              <label for="pin">PIN</label>
+              <input
+                type="text"
+                class="form-control"
+                id="pin"
+                placeholder="Ingrese el PIN"
+                [(ngModel)]="pin"
+                name="pin"
+              />
+            </div>
+            <div class="tecladoNumerico">
+              <app-teclado-numerico
+                #tecladoNumerico
+                (newNroTarjetaEvent)="setNumeros($event)"
+              ></app-teclado-numerico>
+            </div>
+            <button
+              type="button"
+              id="btnLimpiar"
+              class="btn btn-primary mt-3"
+              (click)="limpiarInputs()"
+              (click)="tecladoNumerico.limpiarNumero()"
+            >
+              Limpiar
+            </button>
+            <button
+              type="submit"
+              id="btnAceptar"
+              class="btn btn-primary mt-3"
+              (click)="verificarNumero()"
+              (click)="tecladoNumerico.limpiarNumero()"
+            >
+              Aceptar
+            </button>
+            <button
+              type="submit"
+              id="btnSalir"
+              class="btn btn-primary mt-3"
+              (click)="salir()"
+              (click)="tecladoNumerico.limpiarNumero()"
+              *ngIf="tarjetaValida"
+            >
+              Salir
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

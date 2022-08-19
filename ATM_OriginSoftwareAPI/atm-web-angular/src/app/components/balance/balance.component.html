@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Balance</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Información de la Tarjeta</h5>
+          <hr>
+          <div class="row">
+            <div class="col">
+              <p class="card-text"><strong>N° Tarjeta</strong>: {{ tarjetaLogueada.nroTarjeta }}</p>
+            </div>
+            <div class="col">
+              <p class="card-text"><strong>Fecha de Vencimiento</strong>: {{ tarjetaLogueada.fechaVencimiento }}</p>
+            </div>
+            <div class="col">
+              <p class="card-text"><strong>Saldo</strong>: {{ tarjetaLogueada.balance }}</p>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col botones">
+              <button class="btn btn-secondary btnAtras" (click)="atras()">Atras</button>
+              <button class="btn btn-secondary btnSalir" (click)="salir()">Salir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

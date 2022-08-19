@@ -13,13 +13,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddScoped<IRepository<Tarjeta>, TarjetaRepository>();
-//builder.Services.AddScoped<IRepository<Retiro>, RetiroRepository>();
-//builder.Services.AddScoped<IRepository<Balance>, BalanceRepository>();
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
 builder.Services.AddDbContext<ATMContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("sqlserverconn")));
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowWebApp",
+                      policy =>
+                      {
+                          policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                      });
+});
 
 var app = builder.Build();
 
@@ -31,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowWebApp");
 
 app.UseAuthorization();
 

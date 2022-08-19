@@ -28,18 +28,40 @@ namespace Web.Controllers
             return Ok(tarjetas);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetTarjetaLogueada()
+        {
+            return Ok(SessionManager.GetInstance.obtenerTarjetaLogueada());
+        }
+
         [HttpGet("id")]
         public async Task<IActionResult> ValidarNroTarjeta(string nroTarjeta)
         {
             if (!tarjetaQueries.ExisteTarjeta(nroTarjeta))
             {
-                return NotFound("No se encontró la tarjeta.");
-            } else if (tarjetaQueries.EstaBloqueada(nroTarjeta))
+                return NotFound(new
+                {
+                    IsSuccess = false,
+                    mensajeError = "La tarjeta no existe.",
+                    status = StatusCodes.Status404NotFound
+                });
+            }
+            else if (tarjetaQueries.EstaBloqueada(nroTarjeta))
             {
-                return BadRequest("La tarjeta se encuentra bloqueada.");
+                return BadRequest(new
+                {
+                    IsSuccess = false,
+                    mensajeError = "La tarjeta se encuentra bloqueada.",
+                    status = StatusCodes.Status400BadRequest
+                });
             }
             SessionManager.GetInstance.setNroTarjeta(nroTarjeta);
-            return Ok("Se encontró correctamente la tarjeta.");
+            return Ok(new
+            {
+                IsSuccess = true,
+                mensajeError = "Se validó correctamente la tarjeta.",
+                status = StatusCodes.Status200OK
+            });
         }
 
         [HttpGet("pin")]
@@ -50,20 +72,40 @@ namespace Web.Controllers
                 if (SessionManager.GetInstance.intentosDeIngreso >= 4)
                 {
                     tarjetaCommands.BloquearTarjeta();
-                    return BadRequest("Se ha bloqueado la tarjeta.");
+                    return BadRequest(new
+                    {
+                        IsSuccess = false,
+                        mensajeError = "Se ha bloqueado la tarjeta.",
+                        status = StatusCodes.Status400BadRequest
+                    });
                 }
 
-                return BadRequest("PIN Incorrecto.");
+                return BadRequest(new
+                {
+                    IsSuccess = false,
+                    mensajeError = "PIN Incorrecto.",
+                    status = StatusCodes.Status400BadRequest
+                });
             }
             tarjetaCommands.IniciarSesion();
-            return Ok("Se ha iniciado correctamente la sesión.");
+            return Ok(new
+            {
+                IsSuccess = true,
+                mensajeError = "Se inició correctamente la sesión.",
+                status = StatusCodes.Status200OK
+            });
         }
 
         [HttpGet]
         public async Task<IActionResult> CerrarSesion()
         {
             tarjetaCommands.CerrarSesion();
-            return Ok("Se ha cerrado correctamente la sesión.");
+            return Ok(new
+            {
+                IsSuccess = true,
+                mensajeError = "Se cerró correctamente la sesión.",
+                status = StatusCodes.Status200OK
+            });
         }
     }
 }
